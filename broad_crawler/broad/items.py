@@ -14,3 +14,4 @@ class BroadItem(scrapy.Item):
     title = scrapy.Field()
     page_url = scrapy.Field()
     content = scrapy.Field()
+    crawl_time = scrapy.Field()

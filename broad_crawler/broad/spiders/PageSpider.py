@@ -5,6 +5,7 @@
 # @Site    : 
 # @File    : MySpider.py
 # @Software: PyCharm
+import time
 from scrapy.linkextractors.sgml import SgmlLinkExtractor
 from scrapy.spiders import Rule
 from scrapy_redis.spiders import RedisCrawlSpider
@@ -14,7 +15,7 @@ from broad_crawler.broad.items import BroadItem
 
 class PageSpider(RedisCrawlSpider):
     name = 'pagespider'
-    redis_key = 'pagespider:start_urls'
+    redis_key = 'start_url'
     allowed_domains = ['finance.sina.com.cn/']
 
     rules = [
@@ -35,6 +36,6 @@ class PageSpider(RedisCrawlSpider):
         broad["content"] = content
         broad['page_url'] = response.url
         broad["title"] = response.xpath('//title/text()').extract()
-
-        yield page
+        broad['crawl_time'] = time.strftime('%Y-%m-%d-%H-%M',time.localtime())
+        yield broad
 

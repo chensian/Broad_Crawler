@@ -21,6 +21,3 @@ class UserAgentMiddleware(object):
         agent = random.choice(Agents)
         request.headers["User-Agent"] = agent
 
-
-
-

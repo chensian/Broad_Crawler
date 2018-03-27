@@ -20,7 +20,7 @@ class BroadSpiderPipeline(object):
 class MongoDBPipeline(object):
     def __init__(self):
         clinet = pymongo.MongoClient("localhost", 27017)
-        self.db = clinet["Page"]
+        self.db = clinet["Broad"]
 
     def process_item(self, item, spider):
         """ 判断item的类型，并作相应的处理，再入数据库 """

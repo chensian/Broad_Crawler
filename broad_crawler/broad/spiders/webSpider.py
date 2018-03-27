@@ -5,6 +5,7 @@
 # @Site    : 
 # @File    : MySpider.py
 # @Software: PyCharm
+import time
 from scrapy import Request
 from scrapy.http import HtmlResponse
 
@@ -16,7 +17,7 @@ from broad_crawler.broad.items import BroadItem
 
 class WebSpider(RedisSpider):
     name = 'webspider'
-    redis_key = 'webspider:start_url'
+    redis_key = 'start_url'
     # allowed_domains = ['finance.sina.com.cn/']
     postfix = "finance.sina.com.cn"
 
@@ -44,6 +45,7 @@ class WebSpider(RedisSpider):
         page["content"] = content
         page['page_url'] = response.url
         page["title"] = response.xpath('//title/text()').extract()
+        page['crawl_time'] = time.strftime('%Y-%m-%d-%H-%M',time.localtime())
 
         yield page
 
