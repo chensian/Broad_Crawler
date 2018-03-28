@@ -23,15 +23,17 @@ class WebSpider(RedisSpider):
 
     def parse(self, response):
         print "start parseing"
+        urls = []
         link_extractor = LinkExtractor()
         if isinstance(response, HtmlResponse):
+
             links = link_extractor.extract_links(response)
             for link in links:
+                print(link)
                 if self.postfix in link.url:
-                    links.append(link.url)
-
-            for link in links:
-                yield Request(link, callback=self.parse)
+                    urls.append(link.url)
+        for url in urls:
+            yield Request(url, callback=self.parse)
 
         #do_something_with_response
         page = BroadItem()

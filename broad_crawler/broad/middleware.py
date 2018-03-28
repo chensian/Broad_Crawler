@@ -9,6 +9,8 @@
 import random
 import logging
 
+from scrapy.spidermiddlewares.httperror import HttpErrorMiddleware
+
 from broad_crawler.broad.models.user_agent import Agents
 
 logger = logging.getLogger(__name__)
@@ -20,4 +22,14 @@ class UserAgentMiddleware(object):
     def process_request(self, request, spider):
         agent = random.choice(Agents)
         request.headers["User-Agent"] = agent
+
+
+#RedirectMiddleware.py
+
+class RedirectMiddleware(HttpErrorMiddleware):
+
+    def process_request(self, request, spider):
+        if request.meta.has_key('enable_redirect'):
+            pass
+
 

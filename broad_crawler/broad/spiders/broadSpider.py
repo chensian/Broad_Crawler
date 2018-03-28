@@ -26,15 +26,17 @@ class BroadCrawlSpider(RedisSpider):
         yield item
 
         # 添加URL
-        links = []
+        urls = []
         link_extractor = LinkExtractor()
         if isinstance(response, HtmlResponse):
+
             links = link_extractor.extract_links(response)
             for link in links:
+                print(link)
                 if self.postfix in link.url:
-                    links.append(link.url)
-        for link in links:
-            yield scrapy.Request(link, callback=self.parse)
+                    urls.append(link.url)
+        for url in urls:
+            yield Request(url, callback=self.parse)
 
     def parse_page(self, response):
         item = BroadItem()
