@@ -29,7 +29,6 @@ class WebSpider(RedisSpider):
 
             links = link_extractor.extract_links(response)
             for link in links:
-                print(link)
                 if self.postfix in link.url:
                     urls.append(link.url)
         for url in urls:

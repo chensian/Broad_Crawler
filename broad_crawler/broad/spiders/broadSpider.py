@@ -6,7 +6,6 @@ import re
 import sys 
 import time
 import scrapy
-from bs4 import BeautifulSoup
 
 from scrapy_redis.spiders import RedisSpider
 from scrapy.http import Request, HtmlResponse
@@ -14,17 +13,17 @@ from scrapy.linkextractors import LinkExtractor
 from broad_crawler.broad.items import BroadItem
 
 
-
 class BroadCrawlSpider(RedisSpider):
     name = "broad"
     redis_key = "start_url"
     postfix = ""
 
+
     def parse(self, response):
 
         item = self.parse_page(response)
         yield item
-
+        self.postfix = self.settings["POSTIFX"]
         # 添加URL
         urls = []
         link_extractor = LinkExtractor()
@@ -32,11 +31,11 @@ class BroadCrawlSpider(RedisSpider):
 
             links = link_extractor.extract_links(response)
             for link in links:
-                print(link)
+                # print(link)
                 if self.postfix in link.url:
                     urls.append(link.url)
         for url in urls:
-            yield Request(url, callback=self.parse)
+            yield scrapy.Request(url, callback=self.parse)
 
     def parse_page(self, response):
         item = BroadItem()

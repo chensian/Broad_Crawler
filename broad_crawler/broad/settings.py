@@ -24,8 +24,6 @@ DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # REDIS_PORT = 6379
 REDIS_URL = 'redis://39.108.119.38:6379'
 
-POSTFIX = 'sina.com.cn'
-
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -77,12 +75,12 @@ DOWNLOADER_MIDDLEWARES = {
 # Configure item pipelines
 # See http://scrapy.readthedocs.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-#    'broad.pipelines.MySQLStorePipeline': 300,
-#     'broad.pipelines.SQLiteStorePipeline': 300,
-#     'scrapy_redis.pipelines.RedisPipeline': 300,
+    #    'broad.pipelines.MySQLStorePipeline': 300,
+    #     'broad.pipelines.SQLiteStorePipeline': 300,
+    #     'scrapy_redis.pipelines.RedisPipeline': 300,
     # 'broad.pipelines.BroadPipeline': 300,
-#    'broad.pipelines.BroadImagesPipeline': 400,
-#    'scrapy.pipelines.images.ImagesPipeline': 1,
+    #    'broad.pipelines.BroadImagesPipeline': 400,
+    #    'scrapy.pipelines.images.ImagesPipeline': 1,
     "broad.pipelines.MongoDBPipeline": 403,
 }
 
@@ -109,17 +107,22 @@ ITEM_PIPELINES = {
 
 # Broad Crawl Setting
 CONCURRENT_REQUESTS = 100
-
 REACTOR_THREADPOOL_MEAXSIZE = 20
-
 LOG_LEVEL = 'INFO'
-
 COOKIES_ENABLED = False
-
 RETRY_ENABLED = False
-
 DOWNLOAD_TIMEOUT = 15
-
 REDIRECT_ENABLED = False
-
 AJAXCRAWL_ENABLED = True
+
+
+
+# project customs setting
+WEB_SITE_NAME = 'ITJUZI'
+REDIS_PARAMS = {
+    # 'password' : 'xxxxxx',
+    'db': 1
+}
+# POSTIFX = 'finance.sina.com.cn'
+POSTIFX = 'itjuzi.com'
+MONGO_DB_NAME = 'ITJUZI'
