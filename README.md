@@ -91,13 +91,19 @@ crawlera帮助文档：http://doc.scrapinghub.com/crawlera.html
     AUTOTHROTTLE_ENABLED = False
     DOWNLOAD_TIMEOUT = 600
 
-爬虫监控管理
+## 爬虫监控管理
+
     windows 7 安装 scrapyd 
+    
     graphite 监控
+    
     JSON-RPC
+    
     https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/webservice.html
 
 ### requeriment
     scrapy
+    
     scrapy-redis
+    
     pymongo
