@@ -7,14 +7,15 @@ import sys
 import time
 import scrapy
 
-from scrapy_redis.spiders import RedisSpider
+from scrapy_redis.spiders import RedisSpider, RedisCrawlSpider
 from scrapy.http import Request, HtmlResponse
 from scrapy.linkextractors import LinkExtractor
-from broad_crawler.broad.items import BroadItem
+from broad.items import BroadItem
 
 
-class BroadCrawlSpider(RedisSpider):
-    name = "broad"
+class BroadCrawlSpider(RedisCrawlSpider):
+    name = "broadspider"
+    # allowed_domains = ['finance.sina.com.cn']
     redis_key = "start_url"
     postfix = ""
 
@@ -31,9 +32,9 @@ class BroadCrawlSpider(RedisSpider):
 
             links = link_extractor.extract_links(response)
             for link in links:
-                # print(link)
                 if self.postfix in link.url:
                     urls.append(link.url)
+        # print "urls", urls
         for url in urls:
             yield scrapy.Request(url, callback=self.parse)
 

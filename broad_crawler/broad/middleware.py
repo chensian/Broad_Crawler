@@ -11,7 +11,7 @@ import logging
 
 from scrapy.spidermiddlewares.httperror import HttpErrorMiddleware
 
-from broad_crawler.broad.models.user_agent import Agents
+from broad.models.user_agent import Agents
 
 logger = logging.getLogger(__name__)
 

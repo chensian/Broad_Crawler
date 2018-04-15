@@ -20,9 +20,9 @@ SCHEDULER = "scrapy_redis.scheduler.Scheduler"
 # Ensure all spiders share same duplicates filter through redis.
 DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 
-# REDIS_HOST = 'localhost'
-# REDIS_PORT = 6379
-REDIS_URL = 'redis://39.108.119.38:6379'
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+# REDIS_URL = 'redis://39.108.119.38:6379'
 
 
 # Obey robots.txt rules
@@ -117,12 +117,37 @@ AJAXCRAWL_ENABLED = True
 
 
 
+
 # project customs setting
-WEB_SITE_NAME = 'ITJUZI'
+
+#!/usr/bin/env bash
+# redis-cli -h 39.108.119.38  -n 3 lpush start_url
+# start_url
+# https://www.itjuzi.com/         1
+# https://finance.sina.com.cn     2
+# https://finance.yahoo.com/      3
+# http://www.eastmoney.com/    4
+# https://xueqiu.com/         5
+# http://www.p5w.net/          6
+
+
 REDIS_PARAMS = {
     # 'password' : 'xxxxxx',
-    'db': 1
+    #  'db': 1
+    'db': 2
+    #  'db': 3
+    #  'db': 4
+    #  'db': 6
 }
-# POSTIFX = 'finance.sina.com.cn'
-POSTIFX = 'itjuzi.com'
-MONGO_DB_NAME = 'ITJUZI'
+
+# POSTIFX = 'itjuzi.com'
+POSTIFX = 'http://finance.sina.com.cn'
+# POSTIFX = 'finance.yahoo.com'
+# POSTIFX = 'eastmoney.com'
+# POSTIFX = 'p5w.net'
+
+# MONGO_DB_NAME = 'ITJUZI'
+MONGO_DB_NAME = 'SINA'
+# MONGO_DB_NAME = 'YAHOO'
+# MONGO_DB_NAME = 'EASTMONEY'
+# MONGO_DB_NAME = 'P5W'

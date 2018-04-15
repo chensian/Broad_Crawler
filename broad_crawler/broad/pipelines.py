@@ -9,8 +9,8 @@
 import pymongo
 import time
 
-from broad_crawler.broad.items import BroadItem
-from broad_crawler.broad.settings import MONGO_DB_NAME
+from broad.items import BroadItem
+from broad.settings import MONGO_DB_NAME
 
 
 class BroadSpiderPipeline(object):
