@@ -6,6 +6,7 @@ import re
 import sys 
 import time
 import scrapy
+from bs4 import BeautifulSoup
 
 from scrapy_redis.spiders import RedisSpider, RedisCrawlSpider
 from scrapy.http import Request, HtmlResponse
@@ -49,7 +50,19 @@ class BroadCrawlSpider(RedisCrawlSpider):
             raise UnicodeDecodeError
         item["content"] = content
         item["title"] = response.xpath('//title/text()').extract()
-        item['page_url'] = response.url
+        item['_id'] = response.url
+
+        # filter js  css
+
+        soup = BeautifulSoup(content, "lxml")
+        item['pre_size'] = len(soup.text)
+        for s in soup('script'):
+            # print s
+            s.extract()
+        for s in soup('style'):
+            # print s
+            s.extract()
+        item['size'] = len(soup.text)
         item['crawl_time'] = time.strftime('%Y-%m-%d-%H-%M',time.localtime())
 
         return item
