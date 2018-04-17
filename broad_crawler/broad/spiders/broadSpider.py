@@ -48,7 +48,7 @@ class BroadCrawlSpider(RedisCrawlSpider):
         except UnicodeDecodeError as e:
             print e
             raise UnicodeDecodeError
-        item["content"] = content
+
         item["title"] = response.xpath('//title/text()').extract()
         item['_id'] = response.url
 
@@ -63,6 +63,7 @@ class BroadCrawlSpider(RedisCrawlSpider):
             # print s
             s.extract()
         item['size'] = len(soup.text)
+        item["content"] = soup.decode_contents(formatter="html")
         item['crawl_time'] = time.strftime('%Y-%m-%d-%H-%M',time.localtime())
 
         return item
