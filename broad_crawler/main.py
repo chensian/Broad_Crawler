@@ -24,6 +24,7 @@ if __name__ == '__main__':
 
 
     soup = BeautifulSoup(pageinfos, "lxml")
+    print len(soup.decode_contents(formatter="html"))
     print len(soup.text)
     for s in soup('script'):
         # print s
@@ -32,5 +33,6 @@ if __name__ == '__main__':
     for s in soup('style'):
         # print s
         s.extract()
-    print len(soup.text)
-    print soup.text
+    print len(soup.decode_contents(formatter="html"))
+    # print soup.text
+
