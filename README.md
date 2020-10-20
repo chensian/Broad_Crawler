@@ -100,6 +100,18 @@ crawlera帮助文档：http://doc.scrapinghub.com/crawlera.html
     JSON-RPC
     
     https://scrapy-chs.readthedocs.io/zh_CN/0.24/topics/webservice.html
+    
+
+## Bloomfilter+Redis 种子优化
+    
+    scrapy是默认开启了去重的，用了scrapy_redis后去重队列放在redis里面。
+    全网爬虫爬了8天之后 经有几千万多条URL的去重数据了，再加上几百万条requests的种子, 由于种子数量不断增加，去重时间越来越长导致爬虫爬取的网页越来越少，故参考九茶博主使用Bloomfilter+Redis 种子优化，整个分布式爬虫系统的抓取速度也会有所提高
+
+    refs：https://blog.csdn.net/Bone_ACE/article/details/53306629
+    
+    refs：https://blog.csdn.net/bone_ace/article/details/53099042
+
+    
 
 ### requeriment
     scrapy
