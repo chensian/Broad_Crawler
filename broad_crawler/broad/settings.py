@@ -24,6 +24,14 @@ DUPEFILTER_CLASS = "scrapy_redis.dupefilter.RFPDupeFilter"
 # REDIS_PORT = 6379
 REDIS_URL = 'redis://192.168.5.203:6379'
 
+FILTER_URL = 'redis://192.168.5.203:6379'
+# FILTER_HOST = 'localhost'
+# FILTER_PORT = 6379
+
+"""
+    这是去重队列的Redis信息。
+    原先的REDIS_HOST、REDIS_PORT只负责种子队列；由此种子队列和去重队列可以分布在不同的机器上。
+"""
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = False
@@ -139,6 +147,7 @@ REDIS_PARAMS = {
     #  'db': 4
     #  'db': 6
 }
+FILTER_DB = 2
 
 # POSTIFX = 'itjuzi.com'
 POSTIFX = 'finance.sina.com.cn'

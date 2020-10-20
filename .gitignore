@@ -1,3 +1,5 @@
 /.idea
 /broad_crawler/broad/*.pyc
 *.pyc
+/broad_crawler/log
+/broad_crawler/.idea

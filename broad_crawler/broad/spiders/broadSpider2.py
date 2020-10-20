@@ -6,7 +6,7 @@ import time
 from pyquery import PyQuery as pq
 from scrapy.http import HtmlResponse
 from scrapy.linkextractors import LinkExtractor
-from scrapy_redis.spiders import RedisCrawlSpider
+from broad.scrapy_redis.spiders import RedisSpider
 
 from broad.items import BroadItem
 from broad.util.date_extract import extract_date
@@ -14,7 +14,7 @@ from broad.util.encodeUtil import dateConverter, auto_decoding
 from main import cx
 
 
-class BroadCrawlSpider(RedisCrawlSpider):
+class BroadCrawlSpider(RedisSpider):
     name = "broadspider2"
     # allowed_domains = ['finance.sina.com.cn']
     redis_key = "start_url"
